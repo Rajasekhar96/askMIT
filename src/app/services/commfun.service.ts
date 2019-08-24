@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CommfunService {
-  public domainURL = 'http://videomemes.in/';
+  public domainURL = 'http://localhost/mit/';
+  // public domainURL = 'http://videomemes.in/';
   constructor() { }
 }

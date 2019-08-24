@@ -39,7 +39,7 @@
 
           <ion-item>
             <ion-label position="floating" color="primary"> Date of Birth</ion-label>
-            <ion-datetime displayFormat="MM/DD/YYYY" min="1990-01-01" max="2030-12-31" formControlName="dob"></ion-datetime>
+            <ion-datetime displayFormat="DD/MM/YYYY" picker-format="DD/MM/YYYY" min="1990-01-01" max="2030-12-31" formControlName="dob"></ion-datetime>
           </ion-item>
             <div class="validation-errors">
               <ng-container *ngFor="let validation of validation_messages.dob">
@@ -51,9 +51,9 @@
               </div>
           
                   <ion-list>
-                    <ion-list-header>Select the Gender</ion-list-header>
-                  
+                    <!-- <ion-list-header>Select the Gender</ion-list-header> -->                  
                     <ion-item>
+                        <ion-label color="primary">Gender</ion-label>
                       <ion-select placeholder="Select One" color="primary" formControlName="gender" >
                         <ion-select-option value="Female">Female</ion-select-option>
                         <ion-select-option value="Male">Male</ion-select-option>
@@ -69,14 +69,13 @@
                       </ng-container>
                       </div>
 
-                    <ion-list>
-                      <ion-list-header>Select the childern</ion-list-header>
-                    
+                    <ion-list>                    
                       <ion-item>
+                          <ion-label color="primary">Select the childern</ion-label>
                         <ion-select placeholder="Select One" formControlName="child" >
-                          <ion-select-option value="1stchild">1st childern</ion-select-option>
-                          <ion-select-option value="2ndchild">2nd childern</ion-select-option>
-                          <ion-select-option value="3rdchild">3rd childern</ion-select-option>
+                          <ion-select-option value="1">1st childern</ion-select-option>
+                          <ion-select-option value="2">2nd childern</ion-select-option>
+                          <ion-select-option value="3">3rd childern</ion-select-option>
                         </ion-select>
                       </ion-item>
                       </ion-list>
@@ -143,13 +142,13 @@
           </div>
 
           <ion-item>
-            <ion-label position="floating" color="primary">Chemestry Marks</ion-label>
-            <ion-input type="text" formControlName="chemistryMarks"></ion-input>
+            <ion-label position="floating" color="primary">Computer Science Marks</ion-label>
+            <ion-input type="text" formControlName="compsciMarks"></ion-input>
           </ion-item>
           <div class="validation-errors">
-            <ng-container *ngFor="let validation of validation_messages.chemistryMarks">
+            <ng-container *ngFor="let validation of validation_messages.compsciMarks">
               <div class="error-message"
-                *ngIf="validations_form.get('chemistryMarks').hasError(validation.type) && (validations_form.get('chemistryMarks').dirty || validations_form.get('chemistryMarks').touched)">
+                *ngIf="validations_form.get('compsciMarks').hasError(validation.type) && (validations_form.get('compsciMarks').dirty || validations_form.get('compsciMarks').touched)">
                 <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
               </div>
             </ng-container>

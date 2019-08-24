@@ -57,7 +57,7 @@ export class StudRegPage implements OnInit {
         Validators.minLength(2),
         Validators.required
       ])),
-      chemistryMarks: new FormControl('', Validators.compose([
+      compsciMarks: new FormControl('', Validators.compose([
         Validators.maxLength(2),
         Validators.minLength(2),
         Validators.required
@@ -99,16 +99,46 @@ export class StudRegPage implements OnInit {
       { type: 'minlength', message: 'You are not Eligible to Apply.' },
       { type: 'maxlength', message: 'Enter the correct marks' },
     ],
-    chemistryMarks: [
+    compsciMarks: [
       { type: 'required', message: 'please Enter the marks.' },
       { type: 'minlength', message: 'You are not Eligible to Apply.' },
       { type: 'maxlength', message: 'Enter the correct marks' },
     ],
   };
 
+  convertDate(dob) {
+    return dob.substring(0, 10)
+    // const dateRegex = /^([0-2][0-9]|(3)[0-1])(-)(((0)[0-9])|((1)[0-2]))(-)\d{4}$/i;
+    // const find = dob.match(dateRegex);
+    // return find;
+  }
+
   async onSubmit(values) {
     console.log(values);
-   // console.log(values.email);
+    // console.log(this.convertDate(values.dob));
+    // console.log(values.email);
+   let data: any;
+    // tslint:disable-next-line:max-line-length
+    const url = this.myFunc.domainURL + 'handlers/mit.ashx?mode=insRegStud&studentRegNo=' + values.regNum + '&studentName=' + values.studName + '&dateOfBirth=' + this.convertDate(values.dob) + '&fatherName=' + values.fatherName + '&motherName=' + values.motherName + '&mathsMarks=' + values.mathsMarks + '&scienceMarks=' + values.physicsMarks + '&computerMarks=' + values.compsciMarks + '&child=' + values.child + '&gender=' + values.gender;
+    const loading = await this.loadingCtrl.create({
+      message: 'Student Mark Registration...',
+    });
+    data = this.http.get(url);
+    loading.present().then(() => {
+      data.subscribe(result => {
+        console.log(result);
+        if (result[0].status === 'success') {
+          this.presentToast('Registered Sucessfully 😄');
+          this.router.navigate(['/userhome']);
+        }
+        loading.dismiss();
+      });
+      // return loading.present();
+    }, error => {
+      console.log(error);
+      this.presentToast('Error Occured 😞...!');
+      loading.dismiss();
+    });
   }
 
   async presentToast(msg) {
