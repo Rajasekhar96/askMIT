@@ -48,17 +48,17 @@ export class StudRegPage implements OnInit {
         Validators.required
       ])),
       mathsMarks: new FormControl('', Validators.compose([
-        Validators.maxLength(2),
+        Validators.maxLength(3),
         Validators.minLength(2),
         Validators.required
       ])),
       physicsMarks: new FormControl('', Validators.compose([
-        Validators.maxLength(2),
+        Validators.maxLength(3),
         Validators.minLength(2),
         Validators.required
       ])),
-      compsciMarks: new FormControl('', Validators.compose([
-        Validators.maxLength(2),
+      chemistry: new FormControl('', Validators.compose([
+        Validators.maxLength(3),
         Validators.minLength(2),
         Validators.required
       ])),
@@ -90,24 +90,24 @@ export class StudRegPage implements OnInit {
       { type: 'required', message: 'Please Enter the Mother Name' },
     ],
     mathsMarks: [
-      { type: 'required', message: 'please Enter the marks.' },
+      { type: 'required', message: 'please Enter the Marks.' },
       { type: 'minlength', message: 'You are not Eligible to Apply.' },
-      { type: 'maxlength', message: 'Enter the correct marks' },
+      { type: 'maxlength', message: 'Enter the correct Marks' },
     ],
     physicsMarks: [
-      { type: 'required', message: 'please Enter the marks.' },
+      { type: 'required', message: 'please Enter the Marks.' },
       { type: 'minlength', message: 'You are not Eligible to Apply.' },
-      { type: 'maxlength', message: 'Enter the correct marks' },
+      { type: 'maxlength', message: 'Enter the Correct Marks' },
     ],
-    compsciMarks: [
-      { type: 'required', message: 'please Enter the marks.' },
+    chemistry: [
+      { type: 'required', message: 'please Enter the Marks.' },
       { type: 'minlength', message: 'You are not Eligible to Apply.' },
-      { type: 'maxlength', message: 'Enter the correct marks' },
+      { type: 'maxlength', message: 'Enter the Correct Marks' },
     ],
   };
 
   convertDate(dob) {
-    return dob.substring(0, 10)
+    return dob.substring(0, 10);
     // const dateRegex = /^([0-2][0-9]|(3)[0-1])(-)(((0)[0-9])|((1)[0-2]))(-)\d{4}$/i;
     // const find = dob.match(dateRegex);
     // return find;
@@ -119,7 +119,7 @@ export class StudRegPage implements OnInit {
     // console.log(values.email);
    let data: any;
     // tslint:disable-next-line:max-line-length
-    const url = this.myFunc.domainURL + 'handlers/mit.ashx?mode=insRegStud&studentRegNo=' + values.regNum + '&studentName=' + values.studName + '&dateOfBirth=' + this.convertDate(values.dob) + '&fatherName=' + values.fatherName + '&motherName=' + values.motherName + '&mathsMarks=' + values.mathsMarks + '&scienceMarks=' + values.physicsMarks + '&computerMarks=' + values.compsciMarks + '&child=' + values.child + '&gender=' + values.gender;
+    const url = this.myFunc.domainURL + 'handlers/mit.ashx?mode=insRegStud&studentRegNo=' + values.regNum + '&studentName=' + values.studName + '&dateOfBirth=' + this.convertDate(values.dob) + '&fatherName=' + values.fatherName + '&motherName=' + values.motherName + '&mathsMarks=' + values.mathsMarks + '&physicsMarks=' + values.physicsMarks + '&chemistryMarks=' + values.chemistry + '&child=' + values.child + '&gender=' + values.gender;
     const loading = await this.loadingCtrl.create({
       message: 'Student Mark Registration...',
     });
@@ -128,6 +128,7 @@ export class StudRegPage implements OnInit {
       data.subscribe(result => {
         console.log(result);
         if (result[0].status === 'success') {
+          this.validations_form.reset();
           this.presentToast('Registered Sucessfully 😄');
           this.router.navigate(['/userhome']);
         }

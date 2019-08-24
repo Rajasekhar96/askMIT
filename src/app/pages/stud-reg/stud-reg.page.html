@@ -142,13 +142,13 @@
           </div>
 
           <ion-item>
-            <ion-label position="floating" color="primary">Computer Science Marks</ion-label>
-            <ion-input type="text" formControlName="compsciMarks"></ion-input>
+            <ion-label position="floating" color="primary">Chemistry Marks</ion-label>
+            <ion-input type="text" formControlName="chemistry"></ion-input>
           </ion-item>
           <div class="validation-errors">
-            <ng-container *ngFor="let validation of validation_messages.compsciMarks">
+            <ng-container *ngFor="let validation of validation_messages.chemistry">
               <div class="error-message"
-                *ngIf="validations_form.get('compsciMarks').hasError(validation.type) && (validations_form.get('compsciMarks').dirty || validations_form.get('compsciMarks').touched)">
+                *ngIf="validations_form.get('chemistry').hasError(validation.type) && (validations_form.get('chemistry').dirty || validations_form.get('chemistry').touched)">
                 <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
               </div>
             </ng-container>
