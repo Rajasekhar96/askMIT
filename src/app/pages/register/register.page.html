@@ -1,12 +1,18 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color="primary">
     <ion-title class="ion-text-center">Register</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content class="form-content">
-  <form [formGroup]="validations_form" (ngSubmit)="onSubmit(validations_form.value)">
-    <ion-card class="welcome-card">
+<ion-content padding>
+
+  <div class="myform">
+    <div class="logo mb-3">
+      <div class="col-md-12 text-center">
+        <h1>MIT Register</h1>
+      </div>
+    </div>
+    <form [formGroup]="validations_form" (ngSubmit)="onSubmit(validations_form.value)">
 
       <ion-item>
         <ion-label position="floating" color="primary">Username</ion-label>
@@ -84,15 +90,17 @@
           </div>
         </ng-container>
       </div>
-      <ion-button color="primary" class="submit-btn" expand="full" type="submit" [disabled]="!validations_form.valid">
-        Register</ion-button>
-    </ion-card>
-  </form>
+      <br>
+      <div class="col-md-12 text-center">
+        <button type="submit" [disabled]="!validations_form.valid"
+          class="btn btn-block mybtn btn-primary tx-tfm">Register</button>
+      </div>
+    </form>
+    <br>
+    <div class="form-group">
+        <p class="text-center">Existing User ? <a (click)="goLoginPage()">Login.</a></p>
+      </div>
+  </div>
 
-  <p class="go-to-login">
-      Existing User ? <a (click)="goLoginPage()">Login.</a>
-    </p>
-    <div class="container bottom ion-text-center" >
-        <span>&copy;&nbsp;Copyrights 2019 - 2020.</span>
-    </div>
+
 </ion-content>
